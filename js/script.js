@@ -1,46 +1,55 @@
 const gameWords = ['свинья', 'чебурек', 'попыт', 'смысл', 'багет', 'илюша', 'релокация', 'козлодер', 'якубович']
 let word = getRandomWord(gameWords);
+let answerArray = setupAnswerArray(gameWords);
+let remainingLetters = word.length;
+let attemptCounter = 10;
 
 function getRandomWord(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-let answerArray = [];
-let remainingLetters = word.length;
-let attemptCounter = 10;
+function setupAnswerArray(arr) {
+  let array = [];
+  for (let i = 0; i < word.length; i++) {
+    array.push('_');
+  }
+  return array;
+}
 
-for (let i = 0; i < word.length; i++) {
-  answerArray.push('_');
+function showAnswerAndCongratulatePlayer() {
+  if (attemptCounter == 0 && remainingLetters !== 0) {
+    alert('Кончились попытки');
+  } else {
+    alert(answerArray.join(" "));
+    alert('Вы великолепны, отгадали слово ' + word);
+  }
+}
+
+function updateGameState(value, word, arr) {
+  for (let j = 0; j < word.length; j++) {
+    if (word[j] === value) {
+      if (arr[j] == value) {
+        break;
+      }
+      arr[j] = value;
+      remainingLetters--;
+    }
+  }
 }
 
 while (remainingLetters > 0 && attemptCounter > 0) {
   alert(answerArray.join(" "));
-  console.log(word)
   let guess = prompt('угадай или уходи');
   attemptCounter--;
-  console.log(attemptCounter)
 
   if (guess === null) {
     break;
   } else if (guess.length !== 1) {
     alert('только одна буква')
   } else {
-    for (let j = 0; j < word.length; j++) {
-      if (word[j] === guess) {
-        if (answerArray[j] == guess) {
-          break;
-        }
-        answerArray[j] = guess;
-        remainingLetters--;
-      }
-    }
+    updateGameState(guess, word, answerArray);
   }
 }
 
+showAnswerAndCongratulatePlayer();
 
-if (attemptCounter == 0 && remainingLetters !== 0) {
-  alert('Кончились попытки');
-} else {
-  alert(answerArray.join(" "));
-  alert('Вы великолепны, отгадали слово ' + word);
-}
