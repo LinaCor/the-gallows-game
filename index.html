@@ -6,10 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <title>Игра виселица</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
-<script src="js/script.js"></script>
+  <div class="content">
+    <section class="game-title">
+      <p>...испытай свою удачу...</p>
+      <h1>Виселица</h1>
+    </section>
+    <section class="game-input">
+      <p>введите букву:</p>
+      <input type="text">
+      <button type="submit">рискнуть!</button>
+      <p>осталось попыток: <span>10</span></p>
+    </section>
+    <section class="game-animation">
+      <div class="game-animation__container">
+      </div>
+    </section>
+    <section class="game-result">
+      <p>результат:</p>
+      <div>
+        <p class="game-result__word">_ _ _ _ _ _ А _ _ _</p>
+      </div>
+    </section>
+  </div>
+  <!--<script src="js/script.js"></script>-->
 </body>
 
 </html>

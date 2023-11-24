@@ -1,0 +1,120 @@
+@import "_reset";
+@import "_vars";
+
+@mixin flexCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+body {
+  height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.content {
+  width: 100%;
+  min-height: 100vh;
+  @include flexCenter;
+  margin-left: auto;
+  margin-right: auto;
+  color: $color6;
+  background-color: $color4;
+}
+
+.game-title {
+  width: 100%;
+  min-height: 100px;
+  background-color: $color6;
+  text-align: center;
+  padding: 20px 0;
+
+  p {
+    color: $color2;
+  }
+
+  h1 {
+    font-size: 60px;
+    text-transform: uppercase;
+    color: $color5;
+  }
+}
+
+.game-input {
+  width: 100%;
+  min-height: 150px;
+  @include flexCenter;
+  padding: 25px 0;
+
+  p {
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  input {
+    min-height: 50px;
+    margin-bottom: 24px;
+    text-align: center;
+    font-size: 25px;
+    border-radius: 50px 50px;
+    background-color: $color5;
+  }
+
+  button {
+    width: 150px;
+    min-height: 50px;
+    margin-bottom: 20px;
+    font-size: inherit;
+    border-radius: 50px;
+    color: $color2;
+    background-color: $color1;
+  }
+
+  button:hover {
+    transition: 0.5s;
+    background-color: $color6;
+  }
+}
+
+.game-animation {
+  width: 100%;
+  flex: 1 1 auto;
+
+  .game-animation__container {
+    width: 500px;
+    height: 500px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+.game-result {
+  width: 100%;
+  min-height: 200px;
+  @include flexCenter;
+  padding: 20px 0;
+  background-color: $color6;
+
+  p {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: $color5;
+  }
+
+  div {
+    min-width: 200px;
+    min-height: 40px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    background-color: $color5;
+  }
+
+  .game-result__word {
+    text-align: center;
+    margin-bottom: 0;
+    color: $color1;
+  }
+}

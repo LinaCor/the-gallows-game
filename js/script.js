@@ -19,8 +19,7 @@ function setupAnswerArray(arr) {
 function showAnswerAndCongratulatePlayer() {
   if (attemptCounter == 0 && remainingLetters !== 0) {
     alert('Кончились попытки');
-  } else {
-    alert(answerArray.join(" "));
+  } else if (remainingLetters.length === 0) {
     alert('Вы великолепны, отгадали слово ' + word);
   }
 }
