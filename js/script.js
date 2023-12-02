@@ -1,4 +1,4 @@
-const gameWords = ['свинья', 'чебурек', 'попыт', 'смысл', 'багет', 'илюша', 'релокация', 'козлодер', 'якубович']
+const gameWords = ['небо', 'чебурек', 'дратути', 'смысл', 'илюша', 'релокация', 'отпуск', 'кейс'];
 let word = getRandomWord(gameWords);
 let answerArray = setupAnswerArray(gameWords);
 let remainingLetters = word.length;

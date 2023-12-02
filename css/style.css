@@ -185,7 +185,7 @@ body {
 
 .game-result {
   width: 100%;
-  min-height: 200px;
+  min-height: 150px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
