@@ -1,8 +1,14 @@
+const VALID_SYMBOLS = /^[а-я]$/i;
 const gameWords = ['небо', 'чебурек', 'дратути', 'смысл', 'илюша', 'релокация', 'отпуск', 'кейс'];
 let word = getRandomWord(gameWords);
 let answerArray = setupAnswerArray(gameWords);
 let remainingLetters = word.length;
-let attemptCounter = 10;
+let lettersInput = document.querySelector('.game-input input');
+let buttonVerif = document.querySelector('.game-input button');
+let valueInputValidate = document.querySelector('.game-input__validation');
+let guessWord = document.querySelector('.game-result__word');
+let animationValue = document.querySelector('.game-animation__container');
+
 
 function getRandomWord(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -16,14 +22,6 @@ function setupAnswerArray(arr) {
   return array;
 }
 
-function showAnswerAndCongratulatePlayer() {
-  if (attemptCounter == 0 && remainingLetters !== 0) {
-    alert('Кончились попытки');
-  } else if (remainingLetters.length === 0) {
-    alert('Вы великолепны, отгадали слово ' + word);
-  }
-}
-
 function updateGameState(value, word, arr) {
   for (let j = 0; j < word.length; j++) {
     if (word[j] === value) {
@@ -34,21 +32,59 @@ function updateGameState(value, word, arr) {
       remainingLetters--;
     }
   }
+  guessWord.textContent = arr.join(' ');
 }
 
-while (remainingLetters > 0 && attemptCounter > 0) {
-  alert(answerArray.join(" "));
-  let guess = prompt('угадай или уходи');
-  attemptCounter--;
+window.addEventListener('load', () => {
+  guessWord.textContent = answerArray.join(' ');
+})
 
-  if (guess === null) {
-    break;
-  } else if (guess.length !== 1) {
-    alert('только одна буква')
-  } else {
-    updateGameState(guess, word, answerArray);
+
+buttonVerif.addEventListener('click', () => {
+  const valueInput = lettersInput.value;
+  const tryLettersCounter = document.querySelector('.game__counter');
+  let attemptCounter = Number(tryLettersCounter.textContent);
+
+  if (!valueInput.length) {
+    valueInputValidate.innerHTML = 'а как же выбрать букву?';
+    buttonVerif.disabled = true;
+    return;
   }
-}
 
-showAnswerAndCongratulatePlayer();
+  if (valueInput.length > 1) {
+    valueInputValidate.innerHTML = 'можно только одну букву';
+    buttonVerif.disabled = true;
+    return;
+  }
+
+  if (!VALID_SYMBOLS.test(valueInput)) {
+    valueInputValidate.innerHTML = 'только русские буквы и никаких цифр!';
+    buttonVerif.disabled = true;
+    return;
+  }
+
+  if (attemptCounter > 0 && valueInput.length == 1 && VALID_SYMBOLS.test(valueInput)) {
+    tryLettersCounter.textContent = --attemptCounter;
+    valueInputValidate.innerHTML = '';
+    updateGameState(valueInput, word, answerArray);
+    lettersInput.value = '';
+  }
+
+  if (attemptCounter == 0 && remainingLetters !== 0) {
+    animationValue.innerHTML = 'Кончились попытки';
+  } else if (remainingLetters.length === 0) {
+    animationValue.innerHTML = `Вы великолепны, отгадали слово ${word}`;
+  }
+})
+
+lettersInput.addEventListener('input', () => {
+  if (lettersInput.value.length == 1 || !lettersInput.value) {
+    buttonVerif.disabled = false;
+    valueInputValidate.innerHTML = '';
+  }
+})
+
+
+
+
 
