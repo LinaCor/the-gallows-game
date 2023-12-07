@@ -1,5 +1,6 @@
 @import "_reset";
 @import "_vars";
+@import "_background";
 
 @mixin flexCenter {
   display: flex;
@@ -16,7 +17,7 @@ body {
 }
 
 .content {
-  width: 100%;
+  max-width: 1200px;
   min-height: 100vh;
   @include flexCenter;
   margin-left: auto;
@@ -82,12 +83,71 @@ body {
 .game-animation {
   width: 100%;
   flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
 
   .game-animation__container {
     width: 500px;
     height: 500px;
-    margin-right: auto;
-    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    background: url('../img/barbell.png') 5px 100%/auto auto no-repeat, $color2;
+
+    .human {
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      background-color: $color2;
+
+      .human__rope {
+        width: 400px;
+        height: 50px;
+        background: url('../img/rope.png') 50% 0/auto auto no-repeat;
+      }
+
+      .human__head {
+        width: 400px;
+        height: 100px;
+        background: url('../img/head.png') 50% 0/auto auto no-repeat;
+      }
+
+      .human__body {
+        width: 400px;
+        height: 150px;
+        display: flex;
+        justify-content: space-between;
+        background: url('../img/body.png') 50% 0/auto auto no-repeat;
+
+        .human__body-left {
+          width: 190px;
+          background: url('../img/left_arm.png') 100% 0/auto auto no-repeat;
+        }
+
+        .human__body-right {
+          width: 190px;
+          background: url('../img/right_arm.png') 0 0/auto auto no-repeat;
+        }
+      }
+
+      .human__leg {
+        width: 400px;
+        height: 150px;
+        display: flex;
+        justify-content: space-between;
+
+
+        .human__leg-left {
+          width: 195px;
+          background: url('../img/left_leg.png') 100% 0/auto auto no-repeat;
+        }
+
+        .human__leg-right {
+          width: 195px;
+          background: url('../img/right_leg.png') 0 0/auto auto no-repeat;
+        }
+      }
+    }
   }
 }
 
@@ -117,4 +177,15 @@ body {
     margin-bottom: 0;
     color: $color1;
   }
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }

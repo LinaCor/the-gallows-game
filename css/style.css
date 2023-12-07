@@ -87,6 +87,101 @@ h6 {
 }
 
 body {
+  -webkit-animation: theme 21s linear infinite;
+          animation: theme 21s linear infinite;
+}
+body:after, body:before {
+  content: "";
+  display: block;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  width: 100vmax;
+  height: 100vmax;
+  background: rgba(0, 0, 0, 0.05);
+  -webkit-animation: background 90s linear infinite;
+          animation: background 90s linear infinite;
+}
+body:after {
+  left: 15vw;
+}
+body:before {
+  right: 15vw;
+  -webkit-animation-delay: -30s;
+          animation-delay: -30s;
+  animation-direction: reverse;
+}
+
+@-webkit-keyframes theme {
+  0% {
+    background: #84542a;
+  }
+  16% {
+    background: #deba9a;
+  }
+  33% {
+    background: #5c340c;
+  }
+  50% {
+    background: #a47b5a;
+  }
+  66% {
+    background: #d8c8bc;
+  }
+  83% {
+    background: #5d4936;
+  }
+  100% {
+    background: #84542a;
+  }
+}
+
+@keyframes theme {
+  0% {
+    background: #84542a;
+  }
+  16% {
+    background: #deba9a;
+  }
+  33% {
+    background: #5c340c;
+  }
+  50% {
+    background: #a47b5a;
+  }
+  66% {
+    background: #d8c8bc;
+  }
+  83% {
+    background: #5d4936;
+  }
+  100% {
+    background: #84542a;
+  }
+}
+@-webkit-keyframes background {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes background {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+body {
   height: 100vh;
   font-family: "DM Sans", sans-serif;
   font-size: 20px;
@@ -94,7 +189,7 @@ body {
 }
 
 .content {
-  width: 100%;
+  max-width: 1200px;
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -175,12 +270,84 @@ body {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .game-animation .game-animation__container {
   width: 500px;
   height: 500px;
-  margin-right: auto;
-  margin-left: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  background: url("../img/barbell.png") 5px 100%/auto auto no-repeat, #deba9a;
+}
+.game-animation .game-animation__container .human {
+  width: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #deba9a;
+}
+.game-animation .game-animation__container .human .human__rope {
+  width: 400px;
+  height: 50px;
+  background: url("../img/rope.png") 50% 0/auto auto no-repeat;
+}
+.game-animation .game-animation__container .human .human__head {
+  width: 400px;
+  height: 100px;
+  background: url("../img/head.png") 50% 0/auto auto no-repeat;
+}
+.game-animation .game-animation__container .human .human__body {
+  width: 400px;
+  height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background: url("../img/body.png") 50% 0/auto auto no-repeat;
+}
+.game-animation .game-animation__container .human .human__body .human__body-left {
+  width: 190px;
+  background: url("../img/left_arm.png") 100% 0/auto auto no-repeat;
+}
+.game-animation .game-animation__container .human .human__body .human__body-right {
+  width: 190px;
+  background: url("../img/right_arm.png") 0 0/auto auto no-repeat;
+}
+.game-animation .game-animation__container .human .human__leg {
+  width: 400px;
+  height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.game-animation .game-animation__container .human .human__leg .human__leg-left {
+  width: 195px;
+  background: url("../img/left_leg.png") 100% 0/auto auto no-repeat;
+}
+.game-animation .game-animation__container .human .human__leg .human__leg-right {
+  width: 195px;
+  background: url("../img/right_leg.png") 0 0/auto auto no-repeat;
 }
 
 .game-result {
@@ -215,4 +382,15 @@ body {
   text-align: center;
   margin-bottom: 0;
   color: #84542a;
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }

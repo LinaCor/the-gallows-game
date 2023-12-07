@@ -1,5 +1,5 @@
 const VALID_SYMBOLS = /^[а-я]$/i;
-const gameWords = ['небо', 'чебурек', 'дратути', 'смысл', 'илюша', 'релокация', 'отпуск', 'кейс'];
+const gameWords = ['небо', 'чебурек', 'илюша', 'релокация', 'отпуск', 'кейс', 'литература', 'орнитология', 'солнце', 'автомобиль', 'книга', 'кинология', 'хронометрия', 'вода', 'помело', 'часы'];
 let word = getRandomWord(gameWords);
 let answerArray = setupAnswerArray(gameWords);
 let remainingLetters = word.length;
@@ -42,7 +42,7 @@ window.addEventListener('load', () => {
 
 buttonVerif.addEventListener('click', () => {
   const valueInput = lettersInput.value;
-  const tryLettersCounter = document.querySelector('.game__counter');
+  const tryLettersCounter = document.querySelector('.game-input__counter');
   let attemptCounter = Number(tryLettersCounter.textContent);
 
   if (!valueInput.length) {
@@ -63,6 +63,12 @@ buttonVerif.addEventListener('click', () => {
     return;
   }
 
+  if (answerArray.some((elem) => elem == valueInput)) {
+    valueInputValidate.innerHTML = 'эта буква уже была, попробуй другую';
+    buttonVerif.disabled = true;
+    return;
+  }
+
   if (attemptCounter > 0 && valueInput.length == 1 && VALID_SYMBOLS.test(valueInput)) {
     tryLettersCounter.textContent = --attemptCounter;
     valueInputValidate.innerHTML = '';
@@ -71,10 +77,12 @@ buttonVerif.addEventListener('click', () => {
   }
 
   if (attemptCounter == 0 && remainingLetters !== 0) {
-    animationValue.innerHTML = 'Кончились попытки';
+    animationValue.innerHTML = `Кончились попытки! Ну и ну, вы не смогли отгадать слово ${word}`;
   } else if (remainingLetters.length === 0) {
     animationValue.innerHTML = `Вы великолепны, отгадали слово ${word}`;
   }
+
+  console.log(answerArray, valueInput)
 })
 
 lettersInput.addEventListener('input', () => {

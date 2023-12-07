@@ -20,13 +20,25 @@
     </section>
     <section class="game-input">
       <p>введите букву:</p>
-      <input type="text">
+      <input type="text" autocomplete="off">
       <p class="game-input__validation"></p>
       <button type="submit">рискнуть!</button>
-      <p>осталось попыток: <span class="game__counter">10</span></p>
+      <p>осталось попыток: <span class="game-input__counter">10</span></p>
     </section>
     <section class="game-animation">
       <div class="game-animation__container">
+        <div class="human">
+          <div class="human__rope hidden"></div>
+          <div class="human__head hidden"></div>
+          <div class="human__body hidden">
+            <div class="human__body-left hidden"></div>
+            <div class="human__body-right hidden"></div>
+          </div>
+          <div class="human__leg">
+            <div class="human__leg-left hidden"></div>
+            <div class="human__leg-right hidden"></div>
+          </div>
+        </div>
       </div>
     </section>
     <section class="game-result">
@@ -37,6 +49,7 @@
     </section>
   </div>
   <script src="js/script.js"></script>
+  <script src="js/bckgrnd.js"></script>
 </body>
 
 </html>
