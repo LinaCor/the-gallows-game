@@ -64,9 +64,10 @@ body {
     background-color: $color5;
   }
 
-  button {
-    width: 150px;
+  .game-input__btn {
+    min-width: 150px;
     min-height: 50px;
+    padding: 15px;
     margin-bottom: 20px;
     font-size: inherit;
     border-radius: 50px;
@@ -74,7 +75,7 @@ body {
     background-color: $color1;
   }
 
-  button:hover {
+  .game-input__btn:hover {
     transition: 0.5s;
     background-color: $color6;
   }
@@ -180,12 +181,5 @@ body {
 }
 
 .hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  clip: rect(0 0 0 0);
-  overflow: hidden;
+  visibility: hidden;
 }

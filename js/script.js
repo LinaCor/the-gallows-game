@@ -3,12 +3,12 @@ const gameWords = ['небо', 'чебурек', 'илюша', 'релокаци
 let word = getRandomWord(gameWords);
 let answerArray = setupAnswerArray(gameWords);
 let remainingLetters = word.length;
-let lettersInput = document.querySelector('.game-input input');
-let buttonVerif = document.querySelector('.game-input button');
+let gameActive = document.querySelector('.game-input');
+let lettersInput = gameActive.querySelector('input');
+let buttonVerif = gameActive.querySelector('button');
 let valueInputValidate = document.querySelector('.game-input__validation');
 let guessWord = document.querySelector('.game-result__word');
-let animationValue = document.querySelector('.game-animation__container');
-
+let human = document.querySelector('.human');
 
 function getRandomWord(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -22,7 +22,31 @@ function setupAnswerArray(arr) {
   return array;
 }
 
+function endGame() {
+  buttonVerif.style.display = 'none';
+  let btnRestartGame = document.createElement('button');
+  btnRestartGame.classList.add('game-input__btn');
+  btnRestartGame.textContent = 'сыграть ещё раз';
+  gameActive.append(btnRestartGame);
+  btnRestartGame.addEventListener('click', () => {
+    location.reload();
+  })
+}
+
+
 function updateGameState(value, word, arr) {
+  if (!word.includes(value)) {
+    let hiddenElements = human.querySelectorAll('.hidden');
+    if (hiddenElements.length === 1) {
+      hiddenElements[0].classList.remove('hidden');
+      valueInputValidate.innerHTML = 'попытки закончились :(';
+      endGame();
+    } else {
+      hiddenElements[0].classList.remove('hidden');
+      return;
+    }
+  }
+
   for (let j = 0; j < word.length; j++) {
     if (word[j] === value) {
       if (arr[j] == value) {
@@ -32,8 +56,14 @@ function updateGameState(value, word, arr) {
       remainingLetters--;
     }
   }
+
+  if (!arr.some(elem => elem === '_')) {
+    valueInputValidate.innerHTML = `браво, вы отгадали слово "${word}"!`;
+    endGame();
+  }
   guessWord.textContent = arr.join(' ');
 }
+
 
 window.addEventListener('load', () => {
   guessWord.textContent = answerArray.join(' ');
@@ -42,8 +72,6 @@ window.addEventListener('load', () => {
 
 buttonVerif.addEventListener('click', () => {
   const valueInput = lettersInput.value;
-  const tryLettersCounter = document.querySelector('.game-input__counter');
-  let attemptCounter = Number(tryLettersCounter.textContent);
 
   if (!valueInput.length) {
     valueInputValidate.innerHTML = 'а как же выбрать букву?';
@@ -69,20 +97,11 @@ buttonVerif.addEventListener('click', () => {
     return;
   }
 
-  if (attemptCounter > 0 && valueInput.length == 1 && VALID_SYMBOLS.test(valueInput)) {
-    tryLettersCounter.textContent = --attemptCounter;
+  if (valueInput.length == 1 && VALID_SYMBOLS.test(valueInput)) {
     valueInputValidate.innerHTML = '';
     updateGameState(valueInput, word, answerArray);
     lettersInput.value = '';
   }
-
-  if (attemptCounter == 0 && remainingLetters !== 0) {
-    animationValue.innerHTML = `Кончились попытки! Ну и ну, вы не смогли отгадать слово ${word}`;
-  } else if (remainingLetters.length === 0) {
-    animationValue.innerHTML = `Вы великолепны, отгадали слово ${word}`;
-  }
-
-  console.log(answerArray, valueInput)
 })
 
 lettersInput.addEventListener('input', () => {

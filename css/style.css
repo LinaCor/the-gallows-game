@@ -250,16 +250,17 @@ body {
   border-radius: 50px 50px;
   background-color: #d8c8bc;
 }
-.game-input button {
-  width: 150px;
+.game-input .game-input__btn {
+  min-width: 150px;
   min-height: 50px;
+  padding: 15px;
   margin-bottom: 20px;
   font-size: inherit;
   border-radius: 50px;
   color: #deba9a;
   background-color: #84542a;
 }
-.game-input button:hover {
+.game-input .game-input__btn:hover {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   background-color: #5d4936;
@@ -385,12 +386,5 @@ body {
 }
 
 .hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  clip: rect(0 0 0 0);
-  overflow: hidden;
+  visibility: hidden;
 }
