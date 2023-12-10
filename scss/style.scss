@@ -10,7 +10,7 @@
 
 
 body {
-  height: 100vh;
+  height: 100%;
   font-family: 'DM Sans', sans-serif;
   font-size: 20px;
   font-weight: 400;
@@ -18,13 +18,13 @@ body {
 
 .content {
   max-width: 1200px;
-  height: 100%;
+  min-height: 100%;
   @include flexCenter;
   margin-left: auto;
   margin-right: auto;
   color: $color6;
   background-color: $color4;
-  overflow: hidden; //
+  overflow: hidden;
 }
 
 .game-title {
@@ -39,7 +39,7 @@ body {
   }
 
   h1 {
-    font-size: 60px;
+    font-size: 40px;
     text-transform: uppercase;
     color: $color5;
   }
@@ -47,9 +47,9 @@ body {
 
 .game-input {
   width: 100%;
-  min-height: 250px;
+  min-height: 200px;
   @include flexCenter;
-  padding: 25px 0;
+  padding: 15px 0;
 
   p {
     font-weight: 700;
@@ -59,18 +59,21 @@ body {
   input {
     max-width: 100%;
     min-height: 50px;
-    margin-bottom: 24px;
+    margin-bottom: 15px;
     text-align: center;
     font-size: 25px;
     border-radius: 50px 50px;
     background-color: $color5;
   }
 
+  .game-input__validation {
+    text-align: center;
+  }
+
   .game-input__btn {
     min-width: 150px;
     min-height: 50px;
     padding: 15px;
-    margin-bottom: 20px;
     font-size: inherit;
     border-radius: 50px;
     color: $color2;
@@ -219,6 +222,21 @@ body {
             background: url('../img/right_leg.png') 0 0/auto 90% no-repeat;
           }
         }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 350px) {
+
+  .game-animation {
+    .game-animation__container {
+      width: 250px;
+      height: 250px;
+
+      .human {
+        width: 173px;
+        height: 230px;
       }
     }
   }
