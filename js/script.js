@@ -1,24 +1,20 @@
 const VALID_SYMBOLS = /^[а-я]$/i;
-//const gameWords = [
-//  'небо',
-//  'чебурек',
-//  'илюша',
-//  'релокация',
-//  'отпуск',
-//  'кейс',
-//  'литература',
-//  'орнитология',
-//  'солнце',
-//  'автомобиль',
-//  'книга',
-//  'кинология',
-//  'хронометрия',
-//  'вода',
-//  'помело',
-//  'часы'
-//];
 const gameWords = [
   'небо',
+  'чебурек',
+  'илюша',
+  'релокация',
+  'отпуск',
+  'кейс',
+  'литература',
+  'орнитология',
+  'солнце',
+  'автомобиль',
+  'книга',
+  'кинология',
+  'хронометрия',
+  'вода',
+  'помело',
   'часы'
 ];
 let word = getRandomWord(gameWords);
@@ -53,7 +49,6 @@ const endGame = () => {
     location.reload();
   })
 }
-
 
 const updateGameState = (value, word, arr) => {
   if (!word.includes(value)) {
@@ -108,7 +103,7 @@ window.addEventListener('load', () => {
 });
 
 buttonToVerif.addEventListener('click', () => {
-  const valueInput = lettersInput.value;
+  const valueInput = lettersInput.value.toLowerCase();
   const errorMessage = validateInput(valueInput);
 
   if (errorMessage) {
